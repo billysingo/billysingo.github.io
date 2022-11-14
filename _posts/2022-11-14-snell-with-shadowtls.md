@@ -3,7 +3,7 @@ layout: post
 title: Snell v4 with Shadow-tls 搭建记录
 date: 2022-11-14
 Author: Billysingo
-tags: [sample, document]
+tags: [snell, shadow-tls]
 comments: true
 ---
 
