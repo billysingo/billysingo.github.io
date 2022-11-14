@@ -187,3 +187,11 @@ Shadow-tls的运行日志会保存在/var/log/shadow-tls.log
 
 
     tail -f /var/log/shadow-tls.log
+
+## Surge配置
+
+在[Proxy]里添加
+
+    snell-stls = snell, 你的VPS地址, 443, psk=ScRQc0kMVaWKuIz5r41INDBkNG82CfR, version=4, reuse=true, shadow-tls-password=passwd, shadow-tls-sni=cloud.tencent.com
+
+注意端口为shadow-tls监听的端口。目前版本shadow-tls相关配置只能在文本编辑里配置。
