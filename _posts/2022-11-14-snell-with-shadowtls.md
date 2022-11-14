@@ -4,6 +4,7 @@ title: Snell v4 with Shadow-tls 搭建记录
 date: 2022-11-14
 Author: Billysingo
 tags: [snell, shadow-tls]
+comments: false
 ---
 
 最近Surge更新了5.20版本，添加了新协议Snellv4，添加了传输层插件Shadow-tls的支持，自己手动搭建了一下这个组合，现在做个记录。
