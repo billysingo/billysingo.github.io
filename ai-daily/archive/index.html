@@ -1,0 +1,22 @@
+---
+layout: null
+---
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>历史日报 | AI 科技日报</title>
+<style>
+:root{color-scheme:dark;--bg:#0c111b;--panel:#151e2e;--line:#29384d;--text:#edf3fa;--muted:#a5b5c9;--accent:#67d8e8}body.light{color-scheme:light;--bg:#f3f6fa;--panel:#fff;--line:#d6dfe9;--text:#18273a;--muted:#53667a;--accent:#006c84}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Microsoft YaHei",sans-serif}a{color:var(--accent)}.wrap{max-width:1050px;margin:auto;padding:0 clamp(16px,4vw,40px)}header{border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 0}.brand{color:var(--accent);font-size:13px;font-weight:750;letter-spacing:.12em;margin-right:auto}.nav a{font-size:13px;text-decoration:none}button,input{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-height:44px}button{cursor:pointer}h1{font-size:clamp(30px,5vw,48px);line-height:1.2;margin:35px 0 10px}.sub{color:var(--muted)}input{width:100%;margin:16px 0 12px}.count{color:var(--muted);font-size:14px}.issues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.issue{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:88px;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:18px;text-decoration:none}.issue:hover{border-color:var(--accent)}.issue strong{display:block;color:var(--text);font-size:19px}.issue small{color:var(--muted)}.issue[hidden],#empty[hidden]{display:none}footer{border-top:1px solid var(--line);margin:32px 0;padding:20px 0;color:var(--muted);font-size:13px}@media(max-width:640px){.issues{grid-template-columns:1fr}.nav{gap:12px}.brand{width:100%}}a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style></head>
+<body><header><nav class="wrap nav"><span class="brand">AI / TECH DAILY</span><a href="/ai-daily/">最新日报</a><a href="/">博客首页</a><button id="theme">浅色</button></nav></header>
+<main class="wrap"><h1>历史日报</h1><p class="sub">按北京时间刊期倒序排列，点击日期阅读当日完整资讯。</p><input id="q" type="search" placeholder="按日期筛选，例如 2026-11" aria-label="搜索刊期"><p class="count" id="count" aria-live="polite"></p>
+<div class="issues" id="issues">
+{% assign files = site.static_files | sort: 'path' | reverse %}
+{% assign issue_count = 0 %}
+{% for file in files %}
+{% if file.path contains '/ai-daily/issues/' and file.extname == '.html' %}
+{% assign issue_count = issue_count | plus: 1 %}
+<a class="issue" href="{{ file.path | relative_url }}"><span><strong>{{ file.basename | escape }}</strong><small>AI 科技日报{% if issue_count == 1 %} · 最新一期{% endif %}</small></span><span aria-hidden="true">阅读 →</span></a>
+{% endif %}
+{% endfor %}
+</div><p id="empty" {% if issue_count > 0 %}hidden{% endif %}>没有匹配的日报。</p><footer>AI 科技日报 · 历史内容保留，持续更新。</footer></main>
+<script>(()=>{const items=[...document.querySelectorAll('.issue')],q=document.querySelector('#q'),count=document.querySelector('#count'),empty=document.querySelector('#empty'),theme=document.querySelector('#theme');function filter(){const v=q.value.trim();items.forEach(x=>x.hidden=!x.textContent.includes(v));const n=items.filter(x=>!x.hidden).length;count.textContent='显示 '+n+' / '+items.length+' 期';empty.hidden=n!==0}function setTheme(light){document.body.classList.toggle('light',light);theme.textContent=light?'深色':'浅色';try{localStorage.setItem('ai-daily-theme',light?'light':'dark')}catch(e){}}let light=false;try{light=localStorage.getItem('ai-daily-theme')==='light'}catch(e){}setTheme(light);theme.addEventListener('click',()=>setTheme(!document.body.classList.contains('light')));q.addEventListener('input',filter);filter()})();</script></body></html>
